@@ -1,4 +1,5 @@
 from django.shortcuts import render
 
 def home(request):
-    pass
+    template = 'services/index.html'
+    return render(request, template, {})
