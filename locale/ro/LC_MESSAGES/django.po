@@ -1335,7 +1335,7 @@ msgstr "Unice"
 msgid "Discover"
 msgstr "Descopera"
 #: services/templates/services/index3.html: 268
-msgid "Canions, blue water lakes, small wooded bridges, alpine hiking trails, will send you thinking at fairytales"
+msgid "Canions, blue water lakes with small wooded bridges, alpine hiking trails, will send you thinking at fairytales"
 msgstr "Canioane, lacuri cu apa albastra, poduri de lemn, trasee montane alpine, the vor trimite cu gandul la povesti"
 #: services/templates/services/index3.html: 291
 msgid "There are tales that a few Golden Eagles nest somewhere in Bucegi Mountains, while for Brown Bears, Chamois and many other it is an established home and refuge from human acitivities in the area."

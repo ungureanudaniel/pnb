@@ -1,8 +1,12 @@
-Django
+Django==3.2
 whitenoise
 python-dotenv>=0.19.1
 django-ckeditor==6.1.0
+django-resized
 mysqlclient>=2.1.0
 django-simple-captcha==0.5.14
 requests
 beautifulsoup4
+python-memcached
+pandas
+pymemcache

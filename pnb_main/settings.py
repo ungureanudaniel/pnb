@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ckeditor',
+    'django.contrib.sitemaps',
+    'ckeditor_uploader',
     # 'crispy_forms',
     'captcha',
     'debug_toolbar',
@@ -43,7 +44,12 @@ INSTALLED_APPS = [
     'tickets',
     'services',
     ]
-
+SITE_ID = 1
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -65,10 +71,9 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
             ],
@@ -78,7 +83,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pnb_main.wsgi.application'
 
-
+#================Memcache for static files=============
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        'LOCATION': '127.0.0.1:8000',
+    }
+}
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 if DEVELOPMENT == True:
@@ -140,7 +151,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 # Translation settings
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
@@ -155,3 +167,18 @@ LANGUAGES = (
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#---------ckeditor settings------------------------------------
+# utils.py
+def get_filename(filename):
+    return filename.lower().replace(" ","_")
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_FILENAME_GENERATOR = 'utils.get_filename'
+# ============ django-resized settings ====================
+DJANGORESIZED_DEFAULT_SIZE = [1920, 1080]
+DJANGORESIZED_DEFAULT_SCALE = 0.5
+DJANGORESIZED_DEFAULT_QUALITY = 75
+DJANGORESIZED_DEFAULT_KEEP_META = True
+DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'WebP'
+DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'WebP': ".WebP"}
+DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
